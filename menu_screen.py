@@ -54,7 +54,7 @@ class CursedMenu(object):
         # Recusive lock to prevent both threads from drawing at the same time
         self.screen_lock = threading.RLock()
         self.screen.clear()
-        self.show(["water","look","garden","visit", "instructions"], title=' botany ', subtitle='options')
+        self.show(["вода","осмотреть","сад","посетить", "инструкция"], title=' botany rus by PAHEN', subtitle='варианты')
 
     def define_colors(self):
         # TODO: implement colors
@@ -104,7 +104,7 @@ class CursedMenu(object):
         except Exception as exception:
             # Makes sure data is saved in event of a crash due to window resizing
             self.screen.clear()
-            self.screen.addstr(0, 0, "Enlarge terminal!", curses.A_NORMAL)
+            self.screen.addstr(0, 0, "Увеличить терминал!", curses.A_NORMAL)
             self.screen.refresh()
             self.__exit__()
             traceback.print_exc()
@@ -123,7 +123,7 @@ class CursedMenu(object):
         # Also calls __exit__, but adds traceback after
         except Exception as exception:
             self.screen.clear()
-            self.screen.addstr(0, 0, "Enlarge terminal!", curses.A_NORMAL)
+            self.screen.addstr(0, 0, "Увеличить терминал!", curses.A_NORMAL)
             self.screen.refresh()
             self.__exit__()
             #traceback.print_exc()
@@ -369,7 +369,7 @@ class CursedMenu(object):
             self.screen_lock.acquire()
             self.draw_info_text(page)
             # Multiple pages, paginate and require keypress
-            page_text = "(%d-%d/%d) | sp/next | bksp/prev | s <col #>/sort | f/filter | q/quit" % (index, index_max, len(plant_table))
+            page_text = "(%d-%d/%d) | sp/далее | bksp/предыдущий | s <col #>/сортировка | f/филтер | q/выход" % (index, index_max, len(plant_table))
             self.screen.addstr(self.maxy-2, 2, page_text)
             self.screen.refresh()
             self.screen_lock.release()
@@ -432,82 +432,82 @@ class CursedMenu(object):
 
         stage_descriptions = {
                 0:[
-            "You're excited about your new seed.",
-            "You wonder what kind of plant your seed will grow into.",
-            "You're ready for a new start with this plant.",
-            "You're tired of waiting for your seed to grow.",
-            "You wish your seed could tell you what it needs.",
-            "You can feel the spirit inside your seed.",
-            "These pretzels are making you thirsty.",
-            "Way to plant, Ann!",
-            "'To see things in the seed, that is genius' - Lao Tzu",
+            "Вы рады своему новому семени.",
+            "Вам интересно, в какое растение вырастет ваше семя.",
+            "Вы готовы к новому началу с этим растением.",
+            "Вы устали ждать, пока ваше семя вырастет.",
+            "Вы хотели бы, чтобы ваше семя сказало вам, что ему нужно.",
+            "Вы чувствуете дух внутри своего семени.",
+            "Эти крендельки вызывают жажду.",
+            "Молодец, Энн!",
+            "Видеть в семени то, что в нем есть, - это гениально - Лао Цзы",
             ],
                 1:[
-            "The seedling fills you with hope.",
-            "The seedling shakes in the wind.",
-            "You can make out a tiny leaf - or is that a thorn?",
-            "You can feel the seedling looking back at you.",
-            "You blow a kiss to your seedling.",
-            "You think about all the seedlings who came before it.",
-            "You and your seedling make a great team.",
-            "Your seedling grows slowly and quietly.",
-            "You meditate on the paths your plant's life could take.",
+            "Саженец наполняет вас надеждой.",
+            "Саженец колышется на ветру.",
+            "Вы можете различить крошечный листок - или это колючка?",
+            "Вы чувствуете, как росток смотрит на вас.",
+            "Вы целуете свой росток.",
+            "Вы думаете обо всех росточках, которые были до него.",
+            "Вы и ваш росток - отличная команда.",
+            "Ваш росток растет медленно и спокойно.",
+            "Вы размышляете о путях, по которым может пойти жизнь вашего растения.",
             ],
                 2:[
-            "The " + this_species + " makes you feel relaxed.",
-            "You sing a song to your " + this_species + ".",
-            "You quietly sit with your " + this_species + " for a few minutes.",
-            "Your " + this_species + " looks pretty good.",
-            "You play loud techno to your " + this_species + ".",
-            "You play piano to your " + this_species + ".",
-            "You play rap music to your " + this_species + ".",
-            "You whistle a tune to your " + this_species + ".",
-            "You read a poem to your " + this_species + ".",
-            "You tell a secret to your " + this_species + ".",
-            "You play your favorite record for your " + this_species + ".",
+            " " + this_species + " заставляет вас чувствовать себя расслабленным.",
+            "Ты поешь песню своему " + this_species + ".",
+            "Вы тихо сидите со своими " + this_species + " в течение нескольких минут.",
+            "Ваш " + this_species + " выглядит довольно хорошо.",
+            "Ты играешь громкое техно для своих " + this_species + ".",
+            "Ты играешь на пианино для своего " + this_species + ".",
+            "Ты читаешь рэп для своих " + this_species + ".",
+            "Ты насвистываешь мелодию для своего " + this_species + ".",
+            "Вы читаете стихотворение своему " + this_species + ".",
+            "Вы раскрываете секрет своему " + this_species + ".",
+            "Вы ставите свою любимую пластинку для своего " + this_species + ".",
             ],
                 3:[
-            "Your " + this_species + " is growing nicely!",
-            "You're proud of the dedication it took to grow your " + this_species + ".",
-            "You take a deep breath with your " + this_species + ".",
-            "You think of all the words that rhyme with " + this_species + ".",
-            "The " + this_species + " looks full of life.",
-            "The " + this_species + " inspires you.",
-            "Your " + this_species + " makes you forget about your problems.",
-            "Your " + this_species + " gives you a reason to keep going.",
-            "Looking at your " + this_species + " helps you focus on what matters.",
-            "You think about how nice this " + this_species + " looks here.",
-            "The buds of your " + this_species + " might bloom soon.",
+            "Ваш " + this_species + " отлично растет!",
+            "YВы гордитесь самоотверженностью, которая потребовалась для развития вашего " + this_species + ".",
+            "Вы делаете глубокий вдох с " + this_species + ".",
+            "Вы думаете обо всех словах, которые рифмуются с " + this_species + ".",
+            " " + this_species + " выглядит полным жизни.",
+            " " + this_species + " вдохновляет вас.",
+            "Ваш " + this_species + " заставляет забыть о своих проблемах.",
+            "Ваш " + this_species + " дает вам повод продолжать.",
+            "Смотря на свой " + this_species + " помогает сосредоточиться на главном.",
+            "Ты думаешь о том, как хорошо " + this_species + " выглядит здесь.",
+            "Бутоны твоих " + this_species + " может скоро зацвести.",
             ],
                 4:[
-            "The " + this_color + " flowers look nice on your " + this_species +"!",
-            "The " + this_color + " flowers have bloomed and fill you with positivity.",
-            "The " + this_color + " flowers remind you of your childhood.",
-            "The " + this_color + " flowers remind you of spring mornings.",
-            "The " + this_color + " flowers remind you of a forgotten memory.",
-            "The " + this_color + " flowers remind you of your happy place.",
-            "The aroma of the " + this_color + " flowers energize you.",
-            "The " + this_species + " has grown beautiful " + this_color + " flowers.",
-            "The " + this_color + " petals remind you of that favorite shirt you lost.",
-            "The " + this_color + " flowers remind you of your crush.",
-            "You smell the " + this_color + " flowers and are filled with peace.",
+            " " + this_color + " цветы хорошо смотрятся на вашем " + this_species +"!",
+            " " + this_color + " цветы распустились и наполняют вас позитивом.",
+            " " + this_color + " цветы напоминают вам о детстве.",
+            " " + this_color + " цветы напоминают вам о весеннем утре.",
+            " " + this_color + " цветы напоминают о забытом воспоминании.",
+            " " + this_color + " цветы напоминают вам о вашем счастливом месте.",
+            "Аромат " + this_color + " цветы заряжают вас энергией.",
+            " " + this_species + " выросла красивой " + this_color + " цветы.",
+            " " + this_color + " лепестки напоминают вам о любимой футболке, которую вы потеряли.",
+            " " + this_color + " цветы напоминают вам о вашей влюбленности.",
+            "Вы чувствуете запах " + this_color + " цветы и наполнены миром.",
             ],
                 5:[
-            "You fondly remember the time you spent caring for your " + this_species + ".",
-            "Seed pods have grown on your " + this_species + ".",
-            "You feel like your " + this_species + " appreciates your care.",
-            "The " + this_species + " fills you with love.",
-            "You're ready for whatever comes after your " + this_species + ".",
-            "You're excited to start growing your next plant.",
-            "You reflect on when your " + this_species + " was just a seedling.",
-            "You grow nostalgic about the early days with your " + this_species + ".",
+            "Вы с нежностью вспоминаете время, проведенное в заботе о своем " + this_species + ".",
+            "Стручки семян выросли на вашем " + this_species + ".",
+            "Вы чувствуете, что ваш " + this_species + " ценит вашу заботу.",
+            " " + this_species + " наполняет тебя любовью.",
+            "Вы готовы ко всему, что придет после вашего " + this_species + ".",
+            "Вам не терпится начать выращивать свое следующее растение.",
+            "Вы размышляете о том, когда ваш " + this_species + " был всего лишь ростком.",
+            "Вы ностальгируете по ранним дням, проведенным с вашим " + this_species + ".",
             ],
                 99:[
-            "You wish you had taken better care of your plant.",
-            "If only you had watered your plant more often..",
-            "Your plant is dead, there's always next time.",
-            "You cry over the withered leaves of your plant.",
-            "Your plant died. Maybe you need a fresh start.",
+            "Вы хотели бы лучше заботиться о своем растении.",
+            "Если бы вы чаще поливали свое растение...",
+            "Ваше растение погибло, но всегда можно поробовать еще раз.",
+            "Вы плачете над увядшими листьями вашего растения.",
+            "Ваше растение умерло. Возможно, вам нужно начать все сначала.",
             ],
         }
         # self.life_stages is tuple containing length of each stage
@@ -527,7 +527,7 @@ class CursedMenu(object):
             ticks_since_last = this_plant.ticks - last_growth_at
             ticks_between_stage = this_plant.life_stages[this_stage] - last_growth_at
             if ticks_since_last >= ticks_between_stage * 0.8:
-                output_text += "You notice your plant looks different.\n"
+                output_text += "Вы заметили, что ваше растение выглядит иначе.\n"
 
         output_text += this_stage_descriptions[description_num] + "\n"
 
@@ -537,13 +537,13 @@ class CursedMenu(object):
                     this_plant.species_list[(this_plant.species+3) % len(this_plant.species_list)],
                     this_plant.species_list[(this_plant.species-3) % len(this_plant.species_list)]]
             random.shuffle(species_options)
-            plant_hint = "It could be a(n) " + species_options[0] + ", " + species_options[1] + ", or " + species_options[2]
+            plant_hint = "Это может быть a(n) " + species_options[0] + ", " + species_options[1] + ", or " + species_options[2]
             output_text += plant_hint + ".\n"
 
         # if young plant
         if this_stage == 2:
             if this_plant.rarity >= 2:
-                rarity_hint = "You feel like your plant is special."
+                rarity_hint = "Вы чувствуете, что ваше растение особенное."
                 output_text += rarity_hint + ".\n"
 
         # if mature plant
@@ -552,7 +552,7 @@ class CursedMenu(object):
                     this_plant.color_list[(this_plant.color+3) % len(this_plant.color_list)],
                     this_plant.color_list[(this_plant.color-3) % len(this_plant.color_list)]]
             random.shuffle(color_options)
-            plant_hint = "You can see the first hints of " + color_options[0] + ", " + color_options[1] + ", or " + color_options[2]
+            plant_hint = "Вы можете увидеть первые намеки на " + color_options[0] + ", " + color_options[1] + ", или " + color_options[2]
             output_text += plant_hint + ".\n"
 
         return output_text
@@ -564,7 +564,7 @@ class CursedMenu(object):
             # get plant description before printing
             output_string = self.get_plant_description(this_plant)
             growth_multiplier = 1 + (0.2 * (this_plant.generation-1))
-            output_string += "Generation: {}\nGrowth rate: {}x".format(self.plant.generation, growth_multiplier)
+            output_string += "Поколение: {}\nТемп роста: {}x".format(self.plant.generation, growth_multiplier)
             self.draw_info_text(output_string)
             self.infotoggle = 1
         else:
@@ -575,12 +575,12 @@ class CursedMenu(object):
         # Draw instructions on screen
         self.clear_info_pane()
         if self.infotoggle != 4:
-            instructions_txt = ("welcome to botany. you've been given a seed\n"
-                                "that will grow into a beautiful plant. check\n"
-                                "in and water your plant every 24h to keep it\n"
-                                "growing. 5 days without water = death. your\n"
-                                "plant depends on you & your friends to live!\n"
-                                "more info is available in the readme :)\n"
+            instructions_txt = ("Добро пожаловать в Botany. Вам дали семя.\n"
+                                "из которого вырастет прекрасное растение. проверьте\n"
+                                "в и поливайте ваше растение каждые 24 часа, чтобы оно\n"
+                                "росло. 5 дней без воды = смерть. Ваше\n"
+                                "астение зависит от вас и ваших друзей, чтобы жить!\n"
+                                "больше информации можно найти в readme  :)\n"
                                 "https://github.com/jifunks/botany/blob/master/README.md\n"
                                 "                               cheers,\n"
                                 "                               curio\n"
@@ -622,9 +622,9 @@ class CursedMenu(object):
         harvest_text = ""
         if not self.plant.dead:
             if self.plant.stage == max_stage:
-                harvest_text += "Congratulations! You raised your plant to its final stage of growth.\n"
-                harvest_text += "Your next plant will grow at a speed of: {}x\n".format(1 + (0.2 * self.plant.generation))
-        harvest_text += "If you harvest your plant you'll start over from a seed.\nContinue? (Y/n)"
+                harvest_text += "Поздравляем! Вы вырастили свое растение до последней стадии роста.\n"
+                harvest_text += "Ваше следующее растение будет расти со скоростью: {}x\n".format(1 + (0.2 * self.plant.generation))
+        harvest_text += "Если вы соберете свое растение, то начнете все с семени.\nПродолжить? (Y/n)"
         self.draw_info_text(harvest_text)
         try:
             user_in = self.screen.getch() # Gets user input
@@ -681,7 +681,7 @@ class CursedMenu(object):
                 visitor_block += this_visitor_string
                 visitor_line += this_visitor_string
         else:
-            visitor_block = 'nobody :('
+            visitor_block = 'ниикто :('
         return visitor_block
 
     def get_user_string(self, xpos=3, ypos=15, filterfunc=str.isalnum, completer=None):
@@ -718,22 +718,22 @@ class CursedMenu(object):
 
     def visit_handler(self):
         self.clear_info_pane()
-        self.draw_info_text("whose plant would you like to visit?")
+        self.draw_info_text("чей сад вы хотели бы посетить?")
         self.screen.addstr(15, 2, '~')
         if self.plant.visitors:
             latest_visitor_string = self.build_latest_visitor_output(self.plant.visitors)
-            self.draw_info_text("since last time, you were visited by: ", 3)
+            self.draw_info_text("с прошлого раза вас посетили: ", 3)
             self.draw_info_text(latest_visitor_string, 4)
             self.plant.visitors = []
         weekly_visitor_text = self.get_weekly_visitors()
-        self.draw_info_text("this week you've been visited by: ", 6)
+        self.draw_info_text("на этой неделе вас посетили: ", 6)
         self.draw_info_text(weekly_visitor_text, 7)
         guest_garden = self.get_user_string(completer = completer.LoginCompleter)
         if not guest_garden:
             self.clear_info_pane()
             return None
         if guest_garden.lower() == getpass.getuser().lower():
-            self.screen.addstr(16, 2, "you're already here!")
+            self.screen.addstr(16, 2, "вы уже здесь!")
             self.screen.getch()
             self.clear_info_pane()
             return None
@@ -810,27 +810,27 @@ class CursedMenu(object):
         if request == None: return
         if request == "harvest":
             self.harvest_confirmation()
-        if request == "water":
+        if request == "вода":
             self.plant.water()
-        if request == "look":
+        if request == "осмотреть":
             try:
                 self.draw_plant_description(self.plant)
             except Exception as exception:
                 self.screen.refresh()
                 # traceback.print_exc()
-        if request == "instructions":
+        if request == "инструкция":
             try:
                 self.draw_instructions()
             except Exception as exception:
                 self.screen.refresh()
                 # traceback.print_exc()
-        if request == "visit":
+        if request == "посетить":
             try:
                 self.visit_handler()
             except Exception as exception:
                 self.screen.refresh()
                 # traceback.print_exc()
-        if request == "garden":
+        if request == "сад":
             try:
                 self.draw_garden()
             except Exception as exception:
